@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { verificarPersona } from '../controllers/persona.controller';
+import { crearPersona, listarPersona, verificarPersona } from '../controllers/persona.controller';
+
 
 
 const router: Router = Router();
@@ -10,5 +11,7 @@ const router: Router = Router();
 //PUT /{idPersona} ---> Editar Persona
 
 router.post('/verificar', verificarPersona);
+router.post('/crear', crearPersona);
+router.get('/listar', listarPersona);
 
 export default router;

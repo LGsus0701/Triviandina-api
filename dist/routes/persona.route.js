@@ -8,5 +8,7 @@ const router = (0, express_1.Router)();
 //GET /{idPersona} ---> Obtener persona
 //PUT /{idPersona} ---> Editar Persona
 router.post('/verificar', persona_controller_1.verificarPersona);
+router.post('/crear', persona_controller_1.crearPersona);
+router.get('/listar', persona_controller_1.listarPersona);
 exports.default = router;
 //# sourceMappingURL=persona.route.js.map

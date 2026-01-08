@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verificarPersona = void 0;
+exports.listarPersona = exports.crearPersona = exports.verificarPersona = void 0;
 const datasource_1 = __importDefault(require("../config/datasource"));
 const persona_1 = require("../entities/persona");
 const repository = datasource_1.default.getRepository(persona_1.Persona);
@@ -22,4 +22,13 @@ const verificarPersona = (data) => __awaiter(void 0, void 0, void 0, function* (
     });
 });
 exports.verificarPersona = verificarPersona;
+const crearPersona = (data) => __awaiter(void 0, void 0, void 0, function* () {
+    const nuevaPersona = repository.create(data);
+    return yield repository.save(nuevaPersona);
+});
+exports.crearPersona = crearPersona;
+const listarPersona = () => __awaiter(void 0, void 0, void 0, function* () {
+    return yield repository.find();
+});
+exports.listarPersona = listarPersona;
 //# sourceMappingURL=persona.service.js.map

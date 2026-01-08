@@ -42,7 +42,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verificarPersona = void 0;
+exports.crearPersona = exports.listarPersona = exports.verificarPersona = void 0;
 const personaService = __importStar(require("../services/persona.service"));
 const base_response_1 = require("../shared/base-response");
 const verificarPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -62,4 +62,29 @@ const verificarPersona = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.verificarPersona = verificarPersona;
+const listarPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("➡️ Entró a listarPersonas");
+    try {
+        const personas = yield personaService.listarPersona();
+        return res.json(personas);
+    }
+    catch (error) {
+        console.error('listarPersonas:error', error);
+        res.status(500).json(base_response_1.BaseResponse.error(error.message));
+    }
+});
+exports.listarPersona = listarPersona;
+const crearPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    console.log("➡️ Entró a crearPersona");
+    try {
+        const persona = yield personaService.crearPersona(req.body);
+        return res.status(201).json(base_response_1.BaseResponse.success(persona, 'Persona creada exitosamente'));
+    }
+    catch (error) {
+        console.error('crearPersona:error', error);
+        res.status(500).json(base_response_1.BaseResponse.error((_a = error.message) !== null && _a !== void 0 ? _a : 'Error al crear la persona'));
+    }
+});
+exports.crearPersona = crearPersona;
 //# sourceMappingURL=persona.controller.js.map
